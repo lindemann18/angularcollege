@@ -1,0 +1,38 @@
+module.exports = function(grunt){
+	grunt.initConfig({
+			pkg:grunt.file.readJSON('package.json'),
+		watch:{
+			sass:{
+				files:['sass/*scss'],
+				tasks:['sass']
+			}
+		},
+		sass:{
+			options:{
+				style:"compact"
+			},
+			dist:{
+				files:{
+					'css/style.css':"sass/style.scss"
+				}
+			}
+		},
+		uglify:{
+			options:{
+				manage:false
+				//preserveComments:'none'
+			},
+			my_target:{
+				files:{
+					'js/main.min.js':['js/app.js','js/app2.js']
+				}
+			}
+		}
+	});
+
+	grunt.loadNpmTasks("grunt-contrib-watch");
+	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.registerTask("default",['uglify','sass']);
+	grunt.registerTask("development",['sass']);
+}

@@ -1,0 +1,41 @@
+@mixin effect()
+{
+	transition:0.4s all;
+	opacity:0;
+}
+
+button{
+	.material-icons{
+		margin-top: 7px;
+	}
+}
+
+.md-padding{
+	img{
+		width:100%;
+		height:300px;
+	}
+}
+.classified{
+	&.ng-enter{
+		@include effect();
+		&.ng-enter-active{
+			opacity:1;
+		}
+	}
+	&.ng-move{
+		@include effect();
+		&.ng-move-active{
+			opacity:1;
+		}
+	}
+
+	&.ng-leave{
+		animation: 0.4s fade_classified;
+	}
+}
+
+@keyframes fade_classified{
+	from{opacity:1;}
+	to{opacity:0;}
+}
