@@ -73,7 +73,7 @@
 			/*vm.editing = true;
 			openSidebar();
 			vm.classified = classified;*/
-			$state.go("classifieds.edit",{id:classified.id,classified:classified});
+			$state.go("classifieds.edit",{id:classified.$id});
 		}
 
 		function saveEdit(){
@@ -99,8 +99,10 @@
 			.cancel("No")
 			.targetEvent(event);
 			$mdDialog.show(confirm).then(function(){
-				var index = vm.classifieds.indexOf(classified);
-				vm.classifieds.splice(index,1);	
+				/*var index = vm.classifieds.indexOf(classified);
+				vm.classifieds.splice(index,1);	*/
+				vm.classifieds.$remove(classified);
+				showToast("classified deleted!");
 			},function(){
 
 			});
