@@ -1,4 +1,4 @@
-angular.module("ngClassifieds",['ngMaterial','ui.router'])
+angular.module("ngClassifieds",['ngMaterial','ui.router','firebase'])
 .config(function($mdThemingProvider,$stateProvider){
 	$mdThemingProvider.theme('default')
 	.primaryPalette('teal')
@@ -18,7 +18,7 @@ angular.module("ngClassifieds",['ngMaterial','ui.router'])
 		url:'/edit/:id',
 		templateUrl:'components/classifieds/classifieds.edit.tpl.html',
 		controller:'editClassifiedCtrl as vm',
-		params:{classified:null,}
+		params:{classified:null}
 	})
 })
 .directive("helloWorld",function(){

@@ -16,18 +16,27 @@
 		vm.editing;
 		vm.classified;
 
-		classifiedsFactory.getClassifieds().then(function(classifieds){
+		/*classifiedsFactory.getClassifieds().then(function(classifieds){
 			vm.classifieds = classifieds.data;
 			vm.categories  = vm.getCategories($scope.classifieds);
-		});
+		});*/
 
+		vm.classifieds = classifiedsFactory.ref;
+		vm.classifieds.$loaded().then(function(classifieds){
+			vm.categories = getCategories(classifieds);
+		});
 
 		$scope.$on('newClassified',function(event,classified){
 			console.log(event);
-			classified.id = vm.classifieds.length+1;
-			vm.classifieds.push(classified);
+			vm.classifieds.$add(classified);
+			//classified.id = vm.classifieds.length+1;
+			//vm.classifieds.push(classified);
 			showToast('Classified saved!');
 			vm.classified = {};
+		});
+
+		$scope.$on("editSaved",function(event,message){
+			showToast(message);
 		});
 
 		function openSidebar(){

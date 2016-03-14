@@ -4,7 +4,8 @@
 	.controller('editClassifiedCtrl',function($scope,$mdSidenav,classifiedsFactory,$timeout,$state){
 		var vm = this;
 		vm.closeSidebar   = closeSidebar;
-		vm.saveClassified = saveClassified;
+		vm.saveEdit 	  = saveEdit;
+		vm.classified     = $state.params.classified;
 
 		$timeout(function(){
 			$mdSidenav('left').open();
@@ -35,6 +36,11 @@
 				$scope.$emit('newClassified',classified);
 				vm.sidenavOpen = false;
 			}
+		}
+
+		function saveEdit(){
+			vm.sidenavOpen = false;
+			$scope.$emit('editSaved',"Edit Saved!");
 		}
 
 	})
