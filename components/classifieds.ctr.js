@@ -6,11 +6,11 @@
 		vm.openSidebar      = openSidebar;
 		vm.closeSidebar     = closeSidebar;
 		vm.saveClassified   = saveClassified;
-		vm.editClassified   = editClassified;
+		//vm.editClassified   = editClassified;
 		vm.showToast        = showToast;
 		vm.saveEdit         = saveEdit;
 		vm.getCategories    = getCategories;
-		vm.deleteClassified = deleteClassified;
+		//vm.deleteClassified = deleteClassified;
 		vm.classifieds;
 		vm.categories;
 		vm.editing;
@@ -68,13 +68,7 @@
 			}//if
 		}
 
-		function editClassified(classified)
-		{
-			/*vm.editing = true;
-			openSidebar();
-			vm.classified = classified;*/
-			$state.go("classifieds.edit",{id:classified.$id});
-		}
+		
 
 		function saveEdit(){
 			vm.editing = false;
@@ -91,22 +85,6 @@
 				});
 			});
 			return _.uniq(categories);
-		}
-
-		function deleteClassified(event,classified){
-			var confirm = $mdDialog.confirm().title("Are you sure u want to delete: "+classified.title+"?")
-			.ok("Yes")
-			.cancel("No")
-			.targetEvent(event);
-			$mdDialog.show(confirm).then(function(){
-				/*var index = vm.classifieds.indexOf(classified);
-				vm.classifieds.splice(index,1);	*/
-				vm.classifieds.$remove(classified);
-				showToast("classified deleted!");
-			},function(){
-
-			});
-			
 		}
 	});	
 })();
